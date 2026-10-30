@@ -39,11 +39,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
     "rest_framework",
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
+
     'dj_rest_auth',
+    'dj_rest_auth.registration',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 
     "posts",
     "users"
@@ -68,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'blog_backend.urls'
@@ -152,7 +161,7 @@ REST_AUTH = {
     'JWT_AUTH_COOKIE': 'access-token',
     'JWT_AUTH_REFRESH_COOKIE': 'refresh-token',
     'JWT_AUTH_HTTPONLY': True,
-    'JWT_AUTH_SECURE': True,  # Set to True in production (HTTPS)
+    # 'JWT_AUTH_SECURE': True,  # Set to True in production (HTTPS)
     'JWT_AUTH_SAMESITE': 'Lax',
 }
 
@@ -189,3 +198,5 @@ SIMPLE_JWT = {
     # The claim name that stores the JWT ID (used for blacklisting).
     'JTI_CLAIM': 'jti',
 }
+
+SITE_ID = 1

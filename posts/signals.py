@@ -6,6 +6,5 @@ from .models import Post, PostMeta
 
 @receiver(post_save, sender=Post)
 def create_post_meta(sender, instance, created, **kwargs):
-    """Every Post gets a PostMeta record automatically."""
     if created:
         PostMeta.objects.create(post=instance)

@@ -10,7 +10,8 @@ class Post(models.Model):
     body = models.TextField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    categories = models.ManyToManyField("Category", blank=True, related_name="posts")
+    categories = models.ManyToManyField(
+        "Category", blank=True, related_name="posts")
 
     def __str__(self):
         return self.title
@@ -45,12 +46,10 @@ class Comment(models.Model):
 
 
 class PostMeta(models.Model):
-    """Extra stats for a Post. Created automatically by a signal."""
 
     post = models.OneToOneField(
         Post, on_delete=models.CASCADE, related_name="meta"
     )
-    views = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return f"Meta for {self.post.title}"

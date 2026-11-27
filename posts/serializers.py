@@ -31,7 +31,6 @@ class PostSerializer(serializers.ModelSerializer):
         read_only_fields = ('created_at', 'word_count', 'author')
 
     def get_reading_time(self, obj):
-        # estimated reading time in minutes (200 words per minute)
         return max(1, obj.word_count // 200)
 
     def validate_title(self, value):
